@@ -33,6 +33,8 @@ public class WallDetectionUtilities : MonoBehaviour {
 
     public bool collided { get; private set; }
 
+    public bool useGizmo = true;
+
     public void UpdateCastState(Vector3 f) {
         castDirection = f.normalized;
         Physics.CapsuleCast(
@@ -89,8 +91,10 @@ public class WallDetectionUtilities : MonoBehaviour {
             return -1;
     }
 
-    private void OnDrawGizmos() {
+    private void OnDrawGizmosSelected() {
 #if UNITY_EDITOR
+
+        if (!useGizmo) return;
 
         var defaultCol = Gizmos.color;
 
